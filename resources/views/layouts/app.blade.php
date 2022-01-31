@@ -1,3 +1,9 @@
+<?php
+
+$setting = App\Models\Setting::find(1);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +44,7 @@
 					<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
 					<!-- Logo Header -->
 					<a href="index.html" class="logo d-flex align-items-center">
-						<h2 class="text-white">POINT OF SALES</h2>
+						<h2 class="text-white">{{ $setting->name }}</h2>
 					</a>
 					<!-- End Logo Header -->
 
@@ -67,17 +73,17 @@
 								<li class="nav-item dropdown hidden-caret">
 									<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 										<div class="avatar-sm">
-											<img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+											<img src="{{ asset('assets/img/setting/'.$setting->images) }}" alt="..." class="avatar-img rounded-circle">
 										</div>
 									</a>
 									<ul class="dropdown-menu dropdown-user animated fadeIn">
 										<div class="dropdown-user-scroll scrollbar-outer">
 											<li>
 												<div class="user-box">
-													<div class="avatar-lg"><img src="../assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+													<div class="avatar-lg"><img src="{{ asset('assets/img/setting/'.$setting->images) }}" alt="image profile" class="avatar-img rounded"></div>
 													<div class="u-text">
-														<h4>Hizrian</h4>
-														<p class="text-muted">hello@example.com</p>
+														<h4>{{ Auth::user()->name }}</h4>
+														<p class="text-muted">{{ Auth::user()->email }}</p>
 													</div>
 												</div>
 											</li>
@@ -106,7 +112,7 @@
 					<ul class="nav page-navigation page-navigation-info bg-white">
 						
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="/">
 								<i class="link-icon icon-screen-desktop"></i>
 								<span class="menu-title">Dashboard</span>
 							</a>
@@ -119,32 +125,34 @@
 							<div class="navbar-dropdown animated fadeIn">
 								<ul>
 									<li>
-										<a href="boards.html">Boards</a>
+										<a href="{{ route('category.index') }}">Kategori</a>
 									</li>
 									<li>
-										<a href="projects.html">Projects</a>
+										<a href="{{ route('product.index') }}">Produk</a>
+									</li>
+									<li>
+										<a href="{{ route('card.index') }}">Kartu Kredit</a>
+									</li>
+									<li>
+										<a href="{{ route('tax.index') }}">Pajak</a>
 									</li>
 								</ul>
 							</div>
 						</li>
-                        <li class="nav-item submenu">
-							<a class="nav-link" href="#">
-								<i class="link-icon icon-grid"></i>
-								<span class="menu-title">Transaksi</span>
+                        <li class="nav-item">
+							<a class="nav-link" href="{{ route('order.index') }}">
+								<i class="link-icon icon-pie-chart"></i>
+								<span class="menu-title">Penjualan</span>
 							</a>
-							<div class="navbar-dropdown animated fadeIn">
-								<ul>
-									<li>
-										<a href="boards.html">Boards</a>
-									</li>
-									<li>
-										<a href="projects.html">Projects</a>
-									</li>
-								</ul>
-							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="{{ route('report.index') }}">
+								<i class="link-icon icon-pie-chart"></i>
+								<span class="menu-title">Laporan</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('setting.index') }}">
 								<i class="link-icon icon-pie-chart"></i>
 								<span class="menu-title">Pengaturan</span>
 							</a>
@@ -160,7 +168,7 @@
 		<footer class="footer">
 			<div class="container">
 				<div class="copyright ml-auto">
-					2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="http://www.themekita.com">ThemeKita</a>
+					{{ date('Y') }}, copyright by {{ $setting->name }}
 				</div>				
 			</div>
 		</footer>

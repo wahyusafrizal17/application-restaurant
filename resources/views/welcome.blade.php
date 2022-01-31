@@ -9,10 +9,10 @@
                     <div class="card p-3">
                         <div class="d-flex align-items-center">
                             <span class="stamp stamp-md bg-secondary mr-3">
-                                <i class="fa fa-dollar-sign"></i>
+                                <i class="fa fa-box"></i>
                             </span>
                             <div>
-                                <h5 class="mb-1"><b><a href="#">132</a></b></h5>
+                                <h5 class="mb-1"><b><a href="#">{{ count($products) }}</a></b></h5>
                                 <small class="text-muted">Produk</small>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                                 <i class="fa fa-shopping-cart"></i>
                             </span>
                             <div>
-                                <h5 class="mb-1"><b><a href="#">78</a></b></h5>
+                                <h5 class="mb-1"><b><a href="#">{{ count($orders) }}</a></b></h5>
                                 <small class="text-muted">Order</small>
                             </div>
                         </div>
@@ -35,11 +35,11 @@
                     <div class="card p-3">
                         <div class="d-flex align-items-center">
                             <span class="stamp stamp-md bg-danger mr-3">
-                                <i class="fa fa-users"></i>
+                                <i class="fas fa-shopping-basket"></i>
                             </span>
                             <div>
-                                <h5 class="mb-1"><b><a href="#">1,352</a></b></h5>
-                                <small class="text-muted">Pengeluaran</small>
+                                <h5 class="mb-1"><b><a href="#">@currency($total)</a></b></h5>
+                                <small class="text-muted">Penjualan hari ini</small>
                             </div>
                         </div>
                     </div>
@@ -48,11 +48,11 @@
                     <div class="card p-3">
                         <div class="d-flex align-items-center">
                             <span class="stamp stamp-md bg-warning mr-3">
-                                <i class="fa fa-comment-alt"></i>
+                                <i class="fas fa-cart-arrow-down"></i>
                             </span>
                             <div>
-                                <h5 class="mb-1"><b><a href="#">132</a></b></h5>
-                                <small class="text-muted">Pendapatan</small>
+                                <h5 class="mb-1"><b><a href="#">{{ $carts }}</a></b></h5>
+                                <small class="text-muted">Produk terjual hari ini</small>
                             </div>
                         </div>
                     </div>
@@ -64,20 +64,6 @@
                         <div class="card-header">
                             <div class="card-head-row">
                                 <div class="card-title">Grafik penjualan</div>
-                                <div class="card-tools">
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-                                        <span class="btn-label">
-                                            <i class="fa fa-pencil"></i>
-                                        </span>
-                                        Export
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-                                        <span class="btn-label">
-                                            <i class="fa fa-print"></i>
-                                        </span>
-                                        Print
-                                    </a>
-                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -105,29 +91,9 @@ var ctx = document.getElementById('statisticsChart').getContext('2d');
 var statisticsChart = new Chart(ctx, {
 	type: 'line',
 	data: {
-		labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+		labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
 		datasets: [ {
-			label: "Subscribers",
-			borderColor: '#f3545d',
-			pointBackgroundColor: 'rgba(243, 84, 93, 0.6)',
-			pointRadius: 0,
-			backgroundColor: 'rgba(243, 84, 93, 0.4)',
-			legendColor: '#f3545d',
-			fill: true,
-			borderWidth: 2,
-			data: [154, 184, 175, 203, 210, 231, 240, 278, 252, 312, 320, 374]
-		}, {
-			label: "New Visitors",
-			borderColor: '#fdaf4b',
-			pointBackgroundColor: 'rgba(253, 175, 75, 0.6)',
-			pointRadius: 0,
-			backgroundColor: 'rgba(253, 175, 75, 0.4)',
-			legendColor: '#fdaf4b',
-			fill: true,
-			borderWidth: 2,
-			data: [256, 230, 245, 287, 240, 250, 230, 295, 331, 431, 456, 521]
-		}, {
-			label: "Active Users",
+			label: "Penjualan",
 			borderColor: '#177dff',
 			pointBackgroundColor: 'rgba(23, 125, 255, 0.6)',
 			pointRadius: 0,
@@ -135,7 +101,20 @@ var statisticsChart = new Chart(ctx, {
 			legendColor: '#177dff',
 			fill: true,
 			borderWidth: 2,
-			data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 900]
+			data: [
+				{{ hitung_penjualan('2022-01-01', '2022-02-01') }}, 
+				{{ hitung_penjualan('2022-02-01', '2022-03-01') }}, 
+				{{ hitung_penjualan('2022-03-01', '2022-04-01') }}, 
+				{{ hitung_penjualan('2022-04-01', '2022-05-01') }}, 
+				{{ hitung_penjualan('2022-05-01', '2022-06-01') }}, 
+				{{ hitung_penjualan('2022-06-01', '2022-07-01') }}, 
+				{{ hitung_penjualan('2022-07-01', '2022-08-01') }}, 
+				{{ hitung_penjualan('2022-08-01', '2022-09-01') }}, 
+				{{ hitung_penjualan('2022-09-01', '2022-10-01') }}, 
+				{{ hitung_penjualan('2022-10-01', '2022-11-01') }}, 
+				{{ hitung_penjualan('2022-11-01', '2022-12-01') }}, 
+				{{ hitung_penjualan('2022-12-01', '2022-01-01') }}
+			]
 		}]
 	},
 	options : {
