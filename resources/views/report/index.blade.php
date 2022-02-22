@@ -10,12 +10,7 @@
                    <div class="card-header">
                       <div class="row">
                          <div class="col-md-6">
-                            <h5 class="card-title">Data Kategori</h5>
-                         </div>
-                         <div class="col-md-6 text-right">
-                            <a href="{{ route('category.create') }}" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> Tambah kategori
-                            </a>
+                            <h5 class="card-title">Report penjualan</h5>
                          </div>
                       </div>
                    </div>

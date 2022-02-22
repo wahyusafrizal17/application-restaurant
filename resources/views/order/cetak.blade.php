@@ -12,7 +12,7 @@
                             <h4 class="page-title">Invoice #{{ $order->invoice }}</h4>
                         </div>
                         <div class="col-auto">
-                            <a href="{{ route('order.print', [$order->invoice]) }}" class="btn btn-primary" target="_blank">
+                            <a href="{{ route('order.print', [$order->invoice]) }}" class="btn btn-primary">
                                <i class="fas fa-print"></i> Print
                             </a>
                         </div>

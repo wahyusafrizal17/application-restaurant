@@ -230,23 +230,6 @@
                         </div>
                      </div>
 
-                        <div class="tunai">
-                           <div class="row">
-                              <div class="col-md-12 col-12">
-                                 <div class="form-group">
-                                    <label for="">Uang sebanyak</label>
-                                    <input type="text" class="form-control">
-                                 </div>
-                              </div>
-                              <div class="col-md-12 col-12">
-                                 <div class="form-group">
-                                    <label for="">Kembalian</label>
-                                    <input type="text" class="form-control" readonly>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-
                         <div class="debit">
                            <div class="row">
                               <div class="col-md-12 col-12">
@@ -397,12 +380,10 @@
 
 
 $(".debit").hide();
-$(".tunai").show();
 $(".button-payment").hide();
 
 $(".tunai").click(function() {
    $(".debit").hide();
-   $(".tunai").show();
    $(".button-payment").show();
 
    $(".payment").click(function() {
@@ -436,7 +417,6 @@ $(".tunai").click(function() {
 
 $(".debit").click(function() {
    $(".debit").show();
-   $(".tunai").hide();
    $(".button-payment").show();
 
    $(".payment").click(function() {
